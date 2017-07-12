@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('app', [
-	'ngAnimate',	
-	'ngStorage',
+	'ngAnimate',		
     'ui.router',
     'ui.bootstrap',
     'oc.lazyLoad',
     'angular-loading-bar',      
     'toaster',  
-    'ngBootbox',
+    
     'ngLoadingSpinner',
 ]);

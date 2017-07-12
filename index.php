@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<base href="/" target="_blank">
-	<title>Admin System</title>
+	<title>Voting System</title>
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="assets/libs/components-font-awesome/css/font-awesome.min.css" type="text/css" />
@@ -29,9 +29,6 @@
 	<!-- Toaster -->
 	<script type="text/javascript" src="assets/libs/AngularJS-Toaster/toaster.min.js"></script>
 
-	<!-- Storage -->
-	<script type="text/javascript" src="assets/libs/ngstorage/ngStorage.min.js"></script>	
-
 	<!-- UI Routing -->
 	<script type="text/javascript" src="assets/libs/angular-ui-router/release/angular-ui-router.js"></script>
 	
@@ -50,10 +47,6 @@
 
   	<script type="text/javascript" src="assets/libs/moment/moment.js"></script>
 
-  	<!-- BootBox -->
-  	<script type="text/javascript" src="assets/libs/bootbox/bootbox.js"></script>
-    <script type="text/javascript" src="assets/libs/ngBootbox/dist/ngBootbox.min.js"></script>
-
     <!-- XML to JSON -->
     <script type="text/javascript" src="assets/libs/xml2json/xml2json.js"></script>
 
@@ -61,11 +54,9 @@
   	<script src="assets/common/config.js"></script>
   	<script src="assets/common/config.lazyload.js"></script>
   	<script src="assets/admin/js/config.router.js"></script>
-  	<script src="assets/admin/services/auth.service.js"></script>
+  	
   	<script src="assets/admin/services/cat.service.js"></script>
-  	<script src="assets/common/mydirective.js"></script>
-  	<script src="assets/common/myfilter.js"></script>
-
+  	
   	<script src="assets/admin/js/main.js"></script>  	
 </body>
 </html>

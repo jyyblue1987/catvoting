@@ -5,8 +5,8 @@
  */
 angular.module('app')
     .run(
-        [          '$rootScope', '$state', '$stateParams', 'AuthService',
-            function ($rootScope,   $state,   $stateParams, AuthService) {
+        [          '$rootScope', '$state', '$stateParams',
+            function ($rootScope,   $state,   $stateParams) {
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
 
@@ -29,47 +29,7 @@ angular.module('app')
                         abstract: true,
                         url: '/app',
                         templateUrl: layout
-                    })             
-                    .state('access', {
-                        url: '/access',
-                        templateUrl: layout
-                    })
-                    .state('access.signin', {
-                        url: '/signin',
-                        templateUrl: 'assets/admin/tpl/signin/page_signin.html',
-                        resolve: load( [
-                            'toaster',
-                            'assets/admin/js/signin/signin.js',
-                        ] )
-                    })                    
-                    .state('access.404', {
-                        url: '/404',
-                        templateUrl: 'tpl/page_404.html'
-                    })  
-                    .state('app.classes', {
-                        url: '/classes',
-                        templateUrl: 'assets/admin/tpl/classes/class_list.html',
-                        resolve: load( [
-                            'toaster', 'ngFileUpload',
-                            'assets/admin/js/classes/class_list.js',
-                        ] )
-                    })  
-                    .state('app.timeslot', {
-                        url: '/timeslot/:class_id',                        
-                        templateUrl: 'assets/admin/tpl/timeslot/timeslot.html',
-                        resolve: load( [
-                            'toaster', 'moment', 'rzModule',
-                            'assets/admin/js/timeslot/timeslot.js',
-                        ] )
                     })            
-                    .state('app.booking', {
-                        url: '/booking/:class_id',                        
-                        templateUrl: 'assets/admin/tpl/booking/booking.html',
-                        resolve: load( [
-                            'toaster', 'moment', 'daterangepicker',
-                            'assets/admin/js/booking/booking.js',
-                        ] )
-                    })      
                     .state('app.voting', {
                         url: '/voting',                        
                         templateUrl: 'assets/admin/tpl/voting/voting.html',
