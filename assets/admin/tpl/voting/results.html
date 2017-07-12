@@ -8,48 +8,65 @@
 
 </style>
 <div ng-controller="ResultController">
- 	<script type="text/ng-template" id="voting_score.html">
- 		<div style="width: 200px">
-	        <ul class="headfilter" role="menu" style="list-style: none; margin-left:-50px;">
-	            <li class="line-sm" ng-repeat="score in score_list">
-	                <label class="md-check" style="margin-left: 40px">
-	                    <input type="radio"  ng-model="item.score" ng-value="score" ng-change="onChangeScore(item)"/>
-	                    <i class="green"></i>
-	                    {{score}}
-	                </label>
-	            </li>
-	        </ul>
-	    </div>    
-    </script>
-	<div class="row nomargin">
-		<div class="col-sm-12 nopadding"> 	
-			<div class="panel panel-default" style="margin-top: 5px">
-		        <div class="panel-heading font-bold">
-		        	Cat List
-		        	<div class="pull-right">
-						<a href="#/app/resutls">
-							<i class="fa fa-bar-chart text-warning" style="font-size: 20px;" aria-hidden="true" title="Results"></i>
-						</a>
-					</div>
-		        </div>
-		        <div class="panel-body">
-					
-		        	<div ng-repeat="row in cat_list" class="row">
-		        		<div ng-repeat="item in row" class="col-sm-3">		        			
-		        			<img ng-src="{{item.url}}" style="width:100%" />		
-		        			<div class="cat-panel">
-		        				<a href uib-popover-template="'voting_score.html'" popover-placement="bottom" popover-trigger="outsideClick" popover-is-open="item.score_is_open">
-			        				<i class="fa fa-thumbs-up text-success" aria-hidden="true"></i>
-			        			</a>		
+	<div class="row nomargin" style="margin-top: 30px">
+        <div class="col-md-12">
+          <div class="row row-sm text-center">
+          	<div class="col-sm-12 m-b-md">
+            	<div class="r bg-light dker item hbox no-border">                
+            		<div class="col dk padder-v r-r">
+            		  	<div class="text-primary-dk font-thin h1"><span>{{total_count}}</span></div>
+            		  	<span class="text-muted text-xs">Number of Displayed</span>            		  	
+            		</div>
+            	</div>
+            </div>
 
-			        			<a href ng-click="onFavorite(item)">
-			        				<i class="fa fa-heart" ng-class="{'text-danger' : item.favourite}" aria-hidden="true"></i>
-			        			</a>		
-		        			</div>	
-		        		</div>	
-		        	</div>
-		        </div>
-      		</div>
-		</div>		
-	</div>
+            <div class="col-sm-6">
+            	<a href class="block panel padder-v bg-primary item">
+            		<span class="text-white font-thin h1 block">{{like_count}}</span>
+            		<span class="text-muted text-xs">Like</span>
+            		<span class="bottom text-right w-full">
+            		  	<i class="fa fa-heart text-muted m-r-sm"></i>
+            		</span>
+            	</a>
+            </div>
+
+            <div class="col-sm-6">
+            	<div class="panel padder-v item">
+            		<div class="h1 text-info font-thin h1">{{dislike_count}}</div>
+            		<span class="text-muted text-xs">Dislike</span>
+            		<div class="top text-right w-full">
+            		  	<i class="fa fa-thumbs-o-down text-warning m-r-sm"></i>
+            		</div>
+            	</div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-md-12">
+          	<div class="col-sm-6">
+          		<div ng-repeat="row in like_list" class="row">
+	        		<div ng-repeat="item in row" class="col-sm-4">		        			
+	        			<img ng-src="{{item.url}}" style="width:100%" />		
+	        			<div class="cat-panel">
+		        			<a href ng-click="onFavorite(item)">
+		        				<i class="fa fa-heart" ng-class="{'text-danger' : item.favourite}" aria-hidden="true"></i>
+		        			</a>		
+	        			</div>	
+	        		</div>	
+	        	</div>
+          	</div>
+          	<div class="col-sm-6">
+          		<div ng-repeat="row in dislike_list" class="row">
+	        		<div ng-repeat="item in row" class="col-sm-4">		        			
+	        			<img ng-src="{{item.url}}" style="width:100%" />		
+	        			<div class="cat-panel">
+		        			<a href ng-click="onFavorite(item)">
+		        				<i class="fa fa-heart" ng-class="{'text-danger' : item.favourite}" aria-hidden="true"></i>
+		        			</a>		
+	        			</div>	
+	        		</div>	
+	        	</div>
+          	</div>
+        </div>
+      </div>
 </div> 

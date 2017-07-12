@@ -7,26 +7,22 @@ app.controller('ResultController', function($scope, $rootScope, $http, $state, $
 
     $rootScope.page_title = 'Result Page';
 
-    $scope.cat_list = [];
-    $scope.score_list = [];
+    $scope.like_list = [];
+    $scope.dislike_list = [];
+    
+    $scope.like_count = 0;
+    $scope.dislike_count = 0;
+    $scope.total_count = 0;
 
     var cat_image_list = [];
-
-    
-    for(var i = 1; i < 11; i++) {
-        $scope.score_list.push(i);
-    }
-
 
     // get cat image list
     function getCatImageList() {
         CatService.get(10)
             .then(function(response) {
                 console.log(response);        
-                cat_image_list = response.data.response.data.images.image;        
-                sortCatList(cat_image_list);
-                getVotedList();
-                getFavoriteList();
+                cat_image_list = response.data.response.data.images.image;                                    
+                getLikeList();
             }).catch(function(response) {
 
             })
@@ -36,19 +32,8 @@ app.controller('ResultController', function($scope, $rootScope, $http, $state, $
 
     getCatImageList();
 
-    function getVotedList() {
-        CatService.getvotes()
-            .then(function(response) {
-                console.log(response);        
-                setVoteInfo(response.data.response.data.images.image);                
-            }).catch(function(response) {
 
-            })
-            .finally(function() {
-            }); 
-    }
-
-    function getFavoriteList() {
+    function getLikeList() {
         CatService.getfavourites()
             .then(function(response) {
                 setFavoriteInfo(response.data.response.data.images.image);
@@ -59,30 +44,11 @@ app.controller('ResultController', function($scope, $rootScope, $http, $state, $
             }); 
     }
 
-    function setVoteInfo(vote_list) {
-        if( !vote_list )
-            return;
-
-        for(var i = 0; i < cat_image_list.length; i++) {
-            var exist = false;
-            for(var j = 0; j < vote_list.length; j++) {
-                if( cat_image_list[i].id == vote_list[j].id ){
-                    cat_image_list[i].score = vote_list[j].score;
-                    exist = true;
-                    break;
-                }
-            }
-
-            if( exist == false )
-            {
-                cat_image_list[i].score = 1;
-            }
-        }
-    }
-
     function setFavoriteInfo(favourite_list) {
         if( !favourite_list )
             return;
+
+        var dislike_list = [];
 
         for(var i = 0; i < cat_image_list.length; i++) {
             var exist = false;
@@ -95,14 +61,25 @@ app.controller('ResultController', function($scope, $rootScope, $http, $state, $
             }
 
             if( exist == false )
-            {
+            {                
                 cat_image_list[i].favourite = 0;
+                dislike_list.push(cat_image_list[i]);
             }
         }
+
+        for(var i = 0; i < favourite_list.length; i++)
+            favourite_list[i].favourite = 1;
+
+        sortCatList($scope.like_list, favourite_list);
+        sortCatList($scope.dislike_list, dislike_list);
+
+        $scope.like_count = favourite_list.length;
+        $scope.dislike_count = dislike_list.length;
+        $scope.total_count = favourite_list.length + dislike_list.length;
     }
 
-    function sortCatList(list) {
-        var col = 4;
+    function sortCatList(src, list) {
+        var col = 3;
         var length = list.length;
         var total_row_count = (length - 1) / col + 1;
         var q = 0;
@@ -118,36 +95,7 @@ app.controller('ResultController', function($scope, $rootScope, $http, $state, $
                 q++;
             }
 
-            $scope.cat_list.push(row);
+            src.push(row);
         }
-    }
-
-    $scope.onChangeScore = function(item) {
-        console.log(item);
-        
-        $timeout(function(){
-            item.score_is_open = false; 
-
-            CatService.vote(item)
-                .then(function(response) {
-                    console.log(response);                                    
-                }).catch(function(response) {
-
-                })
-                .finally(function() {
-                });    
-        }, 500);
-    }
-
-    $scope.onFavorite = function(item) {
-        CatService.favourite(item)
-            .then(function(response) {
-                console.log(response);
-                item.favourite = 1 - item.favourite;                                     
-            }).catch(function(response) {
-
-            })
-            .finally(function() {
-            });    
     }
 });
