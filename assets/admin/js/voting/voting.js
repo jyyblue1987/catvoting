@@ -63,7 +63,16 @@ app.controller('VotingController', function($scope, $rootScope, $http, $state, $
         console.log(item);
         
         $timeout(function(){
-            item.score_is_open = false;    
+            item.score_is_open = false; 
+
+            CatService.vote(item)
+                .then(function(response) {
+                    console.log(response);                                    
+                }).catch(function(response) {
+
+                })
+                .finally(function() {
+                });    
         }, 500);
     }
 });
