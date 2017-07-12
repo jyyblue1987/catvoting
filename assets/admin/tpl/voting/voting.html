@@ -4,7 +4,13 @@
 			<div class="panel panel-default" style="margin-top: 5px">
 		        <div class="panel-heading font-bold">Cat List</div>
 		        <div class="panel-body">
-		        	
+					
+		        	<div ng-repeat="row in cat_list" class="row">
+		        		<div ng-repeat="item in row" class="col-sm-3">
+		        			<img ng-src="{{item.url}}" style="width:100%" />		        		
+		        		</div>	
+		        	</div>
+
 		        </div>
       		</div>
 		</div>		
