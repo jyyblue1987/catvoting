@@ -8,15 +8,11 @@ app.controller('VotingController', function($scope, $rootScope, $http, $state, $
     $rootScope.page_title = 'Voting Page';
 
     $scope.cat_list = [];
-
     $scope.score_list = [];
 
-    $scope.voting = {};
+    var cat_image_list = [];
 
-    $scope.voting.score = 2;
-
-    $scope.voting_score = 2;
-
+    
     for(var i = 1; i < 11; i++) {
         $scope.score_list.push(i);
     }
@@ -26,8 +22,11 @@ app.controller('VotingController', function($scope, $rootScope, $http, $state, $
     function getCatImageList() {
         CatService.get(10)
             .then(function(response) {
-                console.log(response);                
-                sortCatList(response.data.response.data.images.image);
+                console.log(response);        
+                cat_image_list = response.data.response.data.images.image;        
+                sortCatList(cat_image_list);
+                getVotedList();
+                getFavoriteList();
             }).catch(function(response) {
 
             })
@@ -36,6 +35,71 @@ app.controller('VotingController', function($scope, $rootScope, $http, $state, $
     }
 
     getCatImageList();
+
+    function getVotedList() {
+        CatService.getvotes()
+            .then(function(response) {
+                console.log(response);        
+                setVoteInfo(response.data.response.data.images.image);                
+            }).catch(function(response) {
+
+            })
+            .finally(function() {
+            }); 
+    }
+
+    function getFavoriteList() {
+        CatService.getfavourites()
+            .then(function(response) {
+                setFavoriteInfo(response.data.response.data.images.image);
+            }).catch(function(response) {
+
+            })
+            .finally(function() {
+            }); 
+    }
+
+    function setVoteInfo(vote_list) {
+        if( !vote_list )
+            return;
+
+        for(var i = 0; i < cat_image_list.length; i++) {
+            var exist = false;
+            for(var j = 0; j < vote_list.length; j++) {
+                if( cat_image_list[i].id == vote_list[j].id ){
+                    cat_image_list[i].score = vote_list[j].score;
+                    exist = true;
+                    break;
+                }
+            }
+
+            if( exist == false )
+            {
+                cat_image_list[i].score = 1;
+            }
+        }
+    }
+
+    function setFavoriteInfo(favourite_list) {
+        if( !favourite_list )
+            return;
+
+        for(var i = 0; i < cat_image_list.length; i++) {
+            var exist = false;
+            for(var j = 0; j < favourite_list.length; j++) {
+                if( cat_image_list[i].id == favourite_list[j].id ){
+                    cat_image_list[i].favourite = 1;
+                    exist = true;
+                    break;
+                }
+            }
+
+            if( exist == false )
+            {
+                cat_image_list[i].favourite = 0;
+            }
+        }
+    }
 
     function sortCatList(list) {
         var col = 4;
@@ -49,7 +113,6 @@ app.controller('VotingController', function($scope, $rootScope, $http, $state, $
                 if( q >= length )
                     break;
 
-                list[q].score = 2;    
                 list[q].score_is_open = false;    
                 row.push(list[q]);
                 q++;
@@ -74,5 +137,17 @@ app.controller('VotingController', function($scope, $rootScope, $http, $state, $
                 .finally(function() {
                 });    
         }, 500);
+    }
+
+    $scope.onFavorite = function(item) {
+        CatService.favourite(item)
+            .then(function(response) {
+                console.log(response);
+                item.favourite = 1 - item.favourite;                                     
+            }).catch(function(response) {
+
+            })
+            .finally(function() {
+            });    
     }
 });

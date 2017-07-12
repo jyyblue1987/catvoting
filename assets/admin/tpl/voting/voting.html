@@ -34,6 +34,10 @@
 		        				<a href uib-popover-template="'voting_score.html'" popover-placement="bottom" popover-trigger="outsideClick" popover-is-open="item.score_is_open">
 			        				<i class="fa fa-thumbs-up text-success" aria-hidden="true"></i>
 			        			</a>		
+
+			        			<a href ng-click="onFavorite(item)">
+			        				<i class="fa fa-heart" ng-class="{'text-danger' : item.favourite}" aria-hidden="true"></i>
+			        			</a>		
 		        			</div>	
 		        		</div>	
 		        	</div>
