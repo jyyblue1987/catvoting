@@ -44,7 +44,7 @@ app.factory('CatService',
         };
 
         service.favourite = function(item) {            
-            var url = API_URL + '/images/favourite?api_key=' + api_key + '&sub_id=' + sub_id + '&image_id=' + item.id + '&score=' + item.score;
+            var url = API_URL + '/images/favourite?api_key=' + api_key + '&sub_id=' + sub_id + '&image_id=' + item.id;
             return $http.get(url,
                 {
                     transformResponse: function (cnv) {
