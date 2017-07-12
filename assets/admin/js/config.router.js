@@ -77,6 +77,14 @@ angular.module('app')
                             'toaster', 'moment', 'daterangepicker',
                             'assets/admin/js/voting/voting.js',
                         ] )
+                    })    
+                    .state('app.results', {
+                        url: '/results',                        
+                        templateUrl: 'assets/admin/tpl/voting/results.html',
+                        resolve: load( [
+                            'toaster', 'moment', 'daterangepicker',
+                            'assets/admin/js/voting/results.js',
+                        ] )
                     })         
                     ;                    
                     
