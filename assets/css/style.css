@@ -1,0 +1,56 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+
+@font-face {
+  font-family: "Segoe Print";
+  src: url('../fonts/segoepr.ttf') format("truetype");
+}
+
+.label_text {
+  color:black
+}
+
+.nomargin {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.nopadding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+p, h2, h3 {
+	color: #3f8acd;
+}
+
+.card_back {
+    border-radius: 25px;
+    background: #3f8acd;
+    width: 200px; 
+    height: 200px;    
+}
+
+.mybg-info {
+    color: #ffffff;
+    background-color: #3f8acd;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.year-text {
+  padding-top: 3px; !important
+  padding-bottom: 3px; !important
+}
+
+.fa-pencil, .fa-times, .fa-clock-o {
+    cursor: pointer;
+}
+
+tr.active > td {
+  background: #dff0d8 !important;
+}
