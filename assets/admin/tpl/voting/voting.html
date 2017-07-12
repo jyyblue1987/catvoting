@@ -1,4 +1,26 @@
+<style>
+	.cat-panel {
+		position: absolute; 
+		bottom: 0; 
+		right: 0; 
+		margin-right: 20px; 
+	}
+
+</style>
 <div ng-controller="VotingController">
+ 	<script type="text/ng-template" id="voting_score.html">
+ 		<div style="width: 200px">
+	        <ul class="headfilter" role="menu" style="list-style: none; margin-left:-50px;">
+	            <li class="line-sm" ng-repeat="score in score_list">
+	                <label class="md-check" style="margin-left: 40px">
+	                    <input type="radio"  ng-model="item.score" ng-value="score" ng-change="onChangeScore(item)"/>
+	                    <i class="green"></i>
+	                    {{score}}
+	                </label>
+	            </li>
+	        </ul>
+	    </div>    
+    </script>
 	<div class="row nomargin">
 		<div class="col-sm-12 nopadding"> 	
 			<div class="panel panel-default" style="margin-top: 5px">
@@ -6,11 +28,15 @@
 		        <div class="panel-body">
 					
 		        	<div ng-repeat="row in cat_list" class="row">
-		        		<div ng-repeat="item in row" class="col-sm-3">
-		        			<img ng-src="{{item.url}}" style="width:100%" />		        		
+		        		<div ng-repeat="item in row" class="col-sm-3">		        			
+		        			<img ng-src="{{item.url}}" style="width:100%" />		
+		        			<div class="cat-panel">
+		        				<a href uib-popover-template="'voting_score.html'" popover-placement="bottom" popover-trigger="outsideClick" popover-is-open="item.score_is_open">
+			        				<i class="fa fa-thumbs-up text-success" aria-hidden="true"></i>
+			        			</a>		
+		        			</div>	
 		        		</div>	
 		        	</div>
-
 		        </div>
       		</div>
 		</div>		

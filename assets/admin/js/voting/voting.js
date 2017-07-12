@@ -2,16 +2,29 @@
 
 /* Controllers */
   // signin controller
-app.controller('VotingController', function($scope, $rootScope, $http, $state, $window, $stateParams, $httpParamSerializer, toaster, CatService) {
+app.controller('VotingController', function($scope, $rootScope, $http, $state, $window, $stateParams, $httpParamSerializer, $timeout, toaster, CatService) {
     var MESSAGE_TITLE = 'Voting';
 
     $rootScope.page_title = 'Voting Page';
 
     $scope.cat_list = [];
 
+    $scope.score_list = [];
+
+    $scope.voting = {};
+
+    $scope.voting.score = 2;
+
+    $scope.voting_score = 2;
+
+    for(var i = 1; i < 11; i++) {
+        $scope.score_list.push(i);
+    }
+
+
     // get cat image list
     function getCatImageList() {
-        CatService.get(100)
+        CatService.get(10)
             .then(function(response) {
                 console.log(response);                
                 sortCatList(response.data.response.data.images.image);
@@ -36,6 +49,8 @@ app.controller('VotingController', function($scope, $rootScope, $http, $state, $
                 if( q >= length )
                     break;
 
+                list[q].score = 2;    
+                list[q].score_is_open = false;    
                 row.push(list[q]);
                 q++;
             }
@@ -44,4 +59,11 @@ app.controller('VotingController', function($scope, $rootScope, $http, $state, $
         }
     }
 
+    $scope.onChangeScore = function(item) {
+        console.log(item);
+        
+        $timeout(function(){
+            item.score_is_open = false;    
+        }, 500);
+    }
 });

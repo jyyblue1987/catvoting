@@ -1,0 +1,14 @@
+<div class="modal-body wrapper-sm">
+    <div>
+        <h5><strong>Ticket</strong></h5>
+        <ul class="headfilter" role="menu" style="list-style: none; margin-left:-50px;">
+            <li class="line-sm" ng-repeat="score in score_list">
+                <label class="md-check" style="margin-left: 20px">
+                    <input type="radio"  ng-model="voting_score" ng-value="score"/>
+                    <i class="green"></i>
+                    {{score}}
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
