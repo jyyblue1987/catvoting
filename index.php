@@ -54,11 +54,15 @@
   	<script type="text/javascript" src="assets/libs/bootbox/bootbox.js"></script>
     <script type="text/javascript" src="assets/libs/ngBootbox/dist/ngBootbox.min.js"></script>
 
+    <!-- XML to JSON -->
+    <script type="text/javascript" src="assets/libs/xml2json/xml2json.js"></script>
+
   	<script src="assets/admin/js/app.js"></script>
   	<script src="assets/common/config.js"></script>
   	<script src="assets/common/config.lazyload.js"></script>
   	<script src="assets/admin/js/config.router.js"></script>
   	<script src="assets/admin/services/auth.service.js"></script>
+  	<script src="assets/admin/services/cat.service.js"></script>
   	<script src="assets/common/mydirective.js"></script>
   	<script src="assets/common/myfilter.js"></script>
 
