@@ -34,7 +34,7 @@ angular.module('app')
                         url: '/voting',                        
                         templateUrl: 'assets/admin/tpl/voting/voting.html',
                         resolve: load( [
-                            'toaster', 'moment', 'daterangepicker',
+                            'toaster', 'moment', 
                             'assets/admin/js/voting/voting.js',
                         ] )
                     })    
@@ -42,7 +42,7 @@ angular.module('app')
                         url: '/results',                        
                         templateUrl: 'assets/admin/tpl/voting/results.html',
                         resolve: load( [
-                            'toaster', 'moment', 'daterangepicker',
+                            'toaster', 'moment', 
                             'assets/admin/js/voting/results.js',
                         ] )
                     })         
