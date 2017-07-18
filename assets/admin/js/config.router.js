@@ -33,16 +33,14 @@ angular.module('app')
                     .state('app.voting', {
                         url: '/voting',                        
                         templateUrl: 'assets/admin/tpl/voting/voting.html',
-                        resolve: load( [
-                            'toaster', 'moment', 
+                        resolve: load( [                            
                             'assets/admin/js/voting/voting.js',
                         ] )
                     })    
                     .state('app.results', {
                         url: '/results',                        
                         templateUrl: 'assets/admin/tpl/voting/results.html',
-                        resolve: load( [
-                            'toaster', 'moment', 
+                        resolve: load( [                            
                             'assets/admin/js/voting/results.js',
                         ] )
                     })         

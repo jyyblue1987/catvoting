@@ -2,7 +2,7 @@
 
 /* Controllers */
   // signin controller
-app.controller('VotingController', function($scope, $rootScope, $http, $state, $window, $stateParams, $httpParamSerializer, $timeout, toaster, CatService) {
+app.controller('VotingController', function($scope, $rootScope, $http, $state, $window, $stateParams, $httpParamSerializer, $timeout, CatService) {
     var MESSAGE_TITLE = 'Voting';
 
     $rootScope.page_title = 'Voting Page';
